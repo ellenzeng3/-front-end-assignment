@@ -88,7 +88,7 @@ function createForm(schema, MYFORM) {
     div = document.createElement("div");
     div.appendChild(submitButton);
     MYFORM.appendChild(div);
-    console.log(MYFORM);
+    //console.log(MYFORM);
 
 }
 
