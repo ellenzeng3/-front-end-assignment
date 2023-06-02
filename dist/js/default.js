@@ -24,6 +24,7 @@ function createForm(schema, MYFORM) {
     // for each question, create a div and input 
     for (let element of schema) {
 
+        // div = block, input = question
         let div = document.createElement("div");
         let input = document.createElement("input");
 
@@ -39,6 +40,7 @@ function createForm(schema, MYFORM) {
                     input.removeAttribute("required");
                 }
             }
+
 
             let label = document.createElement("label");
             label.innerHTML = element.label;
@@ -96,15 +98,18 @@ function createForm(schema, MYFORM) {
 MYFORM.addEventListener("blur", function (event) {
 
     // each field is an input 
+    // target = the element that triggered the event 
     var field = event.target;
 
     // returns error message or nothing
     var error = hasError(field);
 
+    // labeledby vs. describedby?
     if (error) {
         field.setCustomValidity(error);
         field.setAttribute("aria-invalid", "true");
         field.setAttribute("aria-describedby", field.id + "-error");
+        console.log(field);
 
     } else {
         field.setCustomValidity("");
@@ -142,8 +147,8 @@ var hasError = function (field) {
 
 function submit(e) {
 
-    // prevent automatic submit
-    e.preventDefault();
+    // prevent automatic submit?
+    // e.preventDefault();
 
     const FORMDATA = new FormData(MYFORM);
     var isValid = MYFORM.reportValidity();
